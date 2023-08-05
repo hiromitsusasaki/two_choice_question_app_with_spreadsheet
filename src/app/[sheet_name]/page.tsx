@@ -44,27 +44,28 @@ export default function SheetPage({ params }: { params: { sheet_name: string } }
   }
 
   const renderStart = () => (
-    <button onClick={handleStart} disabled={data.length === 0} className="mt-5 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    <button onClick={handleStart} disabled={data.length === 0} className="mt-5 py-2 px-12 border border-transparent shadow-2xl text-2xl font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       Start
     </button>
   );
 
   const renderQuestion = () => (
     <div>
-      <p className="text-xl sm:text-3xl mb-4">{(data[currentQuestionIndex] as any).question}</p>
+      <p className="text-xl sm:text-3xl mb-4 mt-10">{currentQuestionIndex+1}問目（全{data.length}問）</p>
+      <p className="text-xl sm:text-3xl mb-4 mt-5">{(data[currentQuestionIndex] as any).question}</p>
       <div className="flex space-x-4 justify-center">
-        <button onClick={() => handleAnswer(1)} className="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">◯</button>
-        <button onClick={() => handleAnswer(0)} className="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">✕</button>
+        <button onClick={() => handleAnswer(1)} className="py-2 px-12 border border-transparent shadow-2xl text-2xl font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">◯</button>
+        <button onClick={() => handleAnswer(0)} className="py-2 px-12 border border-transparent shadow-2xl text-2xl font-medium rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">✕</button>
       </div>
     </div>
   );
 
   const renderAnswer = () => (
     <div>
-      <p className={`text-2xl sm:text-4xl mb-4 ${isCorrect ? 'text-green-500' : 'text-red-500'}`}>{isCorrect ? '正解!' : '不正解'}</p>
-      <p className="text-lg sm:text-2xl">正解: {(data[currentQuestionIndex] as any).answer === 1 ? '◯' : '✕'}</p>
-      <p className="text-lg sm:text-2xl mt-2 mb-4">説明:<br/> {(data[currentQuestionIndex] as any).explanation}</p>
-      <button onClick={handleNext} className="py-2 px-4 mt-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">次の問題</button>
+      <p className={`text-6xl sm:text-6xl mb-4 mt-10 ${isCorrect ? 'text-green-500' : 'text-red-500'}`}>{isCorrect ? '正解!' : '不正解'}</p>
+      <p className="text-lg sm:text-2xl mt-5">正答: {(data[currentQuestionIndex] as any).answer === 1 ? '◯' : '✕'}</p>
+      <p className="text-lg sm:text-2xl mt-5 mb-4">説明:<br/> {(data[currentQuestionIndex] as any).explanation}</p>
+      <button onClick={handleNext} className="py-2 px-12 mt-4 border border-transparent shadow-2xl text-2xl font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">次の問題</button>
     </div>
   );
 
